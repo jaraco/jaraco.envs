@@ -28,22 +28,13 @@ class VirtualEnv:
     def ensure_env(self):
         if os.path.exists(self.dir):
             return
-        cmd = [
-            sys.executable,
-            '-m', 'virtualenv',
-            self.dir,
-        ]
+        cmd = [sys.executable, '-m', 'virtualenv', self.dir]
         with contextlib2.suppress(AttributeError):
             cmd += ['--python', self.python]
         subprocess.check_call(cmd)
 
     def install(self):
-        cmd = [
-            self.exe(),
-            '-m', 'pip',
-            'install',
-            self.req,
-        ]
+        cmd = [self.exe(), '-m', 'pip', 'install', self.req]
         env = os.environ.copy()
         env.update(getattr(self, 'install_env', {}))
         subprocess.check_call(cmd, env=env)
@@ -61,13 +52,10 @@ class _VEnv(VirtualEnv):
     Experimental version of VirtualEnv, requires target environment
     to be Python 3.
     """
+
     def ensure_env(self):
         executable = getattr(self, 'python', sys.executable)
-        cmd = [
-            executable,
-            '-m', 'venv',
-            self.dir,
-        ]
+        cmd = [executable, '-m', 'venv', self.dir]
         subprocess.check_call(cmd)
 
 
@@ -76,6 +64,7 @@ class ToxEnv(VirtualEnv):
     A version of VirtualEnv that relies on tox (and tox-venv)
     to define and build environments.
     """
+
     root = Path('.tox')
 
     def ensure_env(self):
