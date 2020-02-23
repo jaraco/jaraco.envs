@@ -1,5 +1,3 @@
-from __future__ import unicode_literals
-
 import os
 import sys
 import subprocess
@@ -7,9 +5,6 @@ import platform
 import contextlib
 
 from path import Path
-
-
-__metaclass__ = type
 
 
 class VirtualEnv:
