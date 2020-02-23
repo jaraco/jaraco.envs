@@ -1,3 +1,9 @@
+v2.0.0
+======
+
+* Require Python 3.6 or later.
+* Moved release CI to Azure Pipelines.
+
 v1.0.1
 ======
 
