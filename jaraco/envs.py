@@ -4,8 +4,7 @@ import os
 import sys
 import subprocess
 import platform
-
-import contextlib2
+import contextlib
 
 from path import Path
 
@@ -29,7 +28,7 @@ class VirtualEnv:
         if os.path.exists(self.dir):
             return
         cmd = [sys.executable, '-m', 'virtualenv', self.dir]
-        with contextlib2.suppress(AttributeError):
+        with contextlib.suppress(AttributeError):
             cmd += ['--python', self.python]
         subprocess.check_call(cmd)
 
