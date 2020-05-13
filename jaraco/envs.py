@@ -55,8 +55,8 @@ class _VEnv(VirtualEnv):
 
 class ToxEnv(VirtualEnv):
     """
-    A version of VirtualEnv that relies on tox (and tox-venv)
-    to define and build environments.
+    A version of VirtualEnv that relies on tox to define and
+    build environments.
     """
 
     root = Path('.tox')
