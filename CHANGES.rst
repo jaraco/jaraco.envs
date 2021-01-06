@@ -1,3 +1,8 @@
+v2.1.0
+======
+
+* #1: Rely on pure tox without tox-venv.
+
 v2.0.0
 ======
 
