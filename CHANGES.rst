@@ -1,3 +1,8 @@
+v2.1.1
+======
+
+Rely on PEP 420 for namespace packages.
+
 v2.1.0
 ======
 
