@@ -25,6 +25,8 @@ class VirtualEnv:
         cmd = [sys.executable, '-m', 'virtualenv', self.dir]
         with contextlib.suppress(AttributeError):
             cmd += ['--python', self.python]
+        with contextlib.suppress(AttributeError):
+            cmd += self.create_opts
         subprocess.check_call(cmd)
 
     def install(self):
@@ -50,6 +52,10 @@ class _VEnv(VirtualEnv):
     def ensure_env(self):
         executable = getattr(self, 'python', sys.executable)
         cmd = [executable, '-m', 'venv', self.dir]
+        with contextlib.suppress(AttributeError):
+            cmd += ['--python', self.python]
+        with contextlib.suppress(AttributeError):
+            cmd += self.create_opts
         subprocess.check_call(cmd)
 
 

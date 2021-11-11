@@ -1,3 +1,9 @@
+v2.2.0
+======
+
+* VirtualEnv now allows a ``create_opts`` attribute to
+  affect the creation (passed to `virtualenv`).
+
 v2.1.1
 ======
 
