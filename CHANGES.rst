@@ -1,3 +1,11 @@
+v2.3.0
+======
+
+* #4: Added some tests capturing expectations around
+  object types for input (use ``path.Path`` object for
+  ``root`` property for maximum compatibility).
+* Require Python 3.7 or later.
+
 v2.2.0
 ======
 
