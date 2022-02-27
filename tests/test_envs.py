@@ -17,7 +17,15 @@ env_types = pytest.mark.parametrize(
 )
 
 
-path_types = pytest.mark.parametrize("PathCls", [pathlib.Path, path.Path])
+win37 = 'platform.system() == "Windows" and sys.version_info < (3, 8)'
+
+path_types = pytest.mark.parametrize(
+    "PathCls",
+    [
+        pytest.param(pathlib.Path, marks=pytest.mark.xfail(win37)),
+        path.Path,
+    ],
+)
 
 
 @env_types
