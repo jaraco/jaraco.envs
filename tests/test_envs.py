@@ -1,3 +1,4 @@
+import os
 import subprocess
 from shutil import which
 import pathlib
@@ -37,8 +38,8 @@ def test_root_pathlib(tmp_path, cls, create_opts, PathCls):
 
     possible_bin_dirs = (tmp_path / ".venv/bin", tmp_path / ".venv/Scripts")
     bin_dir = next(f for f in possible_bin_dirs if f.exists())
-    expected_python = which("python", path=str(bin_dir))
+    expected_python = which("python", path=bin_dir)
 
     cmd = [venv.exe(), "-c", "import sys; print(sys.executable)"]
     out = subprocess.check_output(cmd, text=True).strip()
-    assert out == expected_python
+    assert os.path.samefile(out, expected_python)
