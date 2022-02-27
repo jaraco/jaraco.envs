@@ -1,21 +1,30 @@
 import subprocess
 from shutil import which
+import pathlib
 
 import pytest
+import path
 
 from jaraco import envs
 
 
-@pytest.mark.parametrize(
+env_types = pytest.mark.parametrize(
     "cls,create_opts",
     [
         (envs.VirtualEnv, ["--no-setuptools", "--no-pip", "--no-wheel"]),
         (envs._VEnv, ["--without-pip"]),
     ],
 )
-def test_ensure_env(tmp_path, cls, create_opts):
+
+
+path_types = pytest.mark.parametrize("PathCls", [pathlib.Path, path.Path])
+
+
+@env_types
+@path_types
+def test_root_pathlib(tmp_path, cls, create_opts, PathCls):
     venv = cls()
-    vars(venv).update(root=tmp_path, name=".venv", create_opts=create_opts)
+    vars(venv).update(root=PathCls(tmp_path), name=".venv", create_opts=create_opts)
     venv.ensure_env()
 
     possible_bin_dirs = (tmp_path / ".venv/bin", tmp_path / ".venv/Scripts")
@@ -23,5 +32,5 @@ def test_ensure_env(tmp_path, cls, create_opts):
     expected_python = which("python", path=str(bin_dir))
 
     cmd = [venv.exe(), "-c", "import sys; print(sys.executable)"]
-    out = str(subprocess.check_output(cmd).strip(), "utf-8")
+    out = subprocess.check_output(cmd, text=True).strip()
     assert out == expected_python
