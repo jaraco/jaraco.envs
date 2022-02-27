@@ -5,6 +5,8 @@ v2.3.0
   object types for input (use ``path.Path`` object for
   ``root`` property for maximum compatibility).
 * Require Python 3.7 or later.
+* VirtualEnv classes now expose ``clean_opts`` for easy
+  reference in creating clean environments.
 
 v2.2.0
 ======

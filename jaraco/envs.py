@@ -9,6 +9,7 @@ from path import Path
 
 class VirtualEnv:
     root = Path(os.environ.get('SERVICES_ROOT', '.cache/services'))
+    clean_opts = ["--no-setuptools", "--no-pip", "--no-wheel"]
 
     @property
     def dir(self):
@@ -48,6 +49,8 @@ class _VEnv(VirtualEnv):
     Experimental version of VirtualEnv, requires target environment
     to be Python 3.
     """
+
+    clean_opts = ["--without-pip"]
 
     def ensure_env(self):
         executable = getattr(self, 'python', sys.executable)

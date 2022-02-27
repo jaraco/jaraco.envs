@@ -10,14 +10,7 @@ import path
 from jaraco import envs
 
 
-env_types = pytest.mark.parametrize(
-    "cls,create_opts",
-    [
-        (envs.VirtualEnv, ["--no-setuptools", "--no-pip", "--no-wheel"]),
-        (envs._VEnv, ["--without-pip"]),
-    ],
-)
-
+env_types = pytest.mark.parametrize("VEnvCls", [envs.VirtualEnv, envs._VEnv])
 
 win37 = 'platform.system() == "Windows" and sys.version_info < (3, 8)'
 
@@ -35,9 +28,11 @@ maybe_fspath = os.fspath if sys.version_info < (3, 8) else lambda x: x
 
 @env_types
 @path_types
-def test_root_pathlib(tmp_path, cls, create_opts, PathCls):
-    venv = cls()
-    vars(venv).update(root=PathCls(tmp_path), name=".venv", create_opts=create_opts)
+def test_root_pathlib(tmp_path, VEnvCls, PathCls):
+    venv = VEnvCls()
+    vars(venv).update(
+        root=PathCls(tmp_path), name=".venv", create_opts=VEnvCls.clean_opts
+    )
     venv.ensure_env()
 
     possible_bin_dirs = (tmp_path / ".venv/bin", tmp_path / ".venv/Scripts")
