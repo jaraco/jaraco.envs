@@ -1,3 +1,8 @@
+v2.4.0
+======
+
+Made VEnv non-experimental.
+
 v2.3.0
 ======
 

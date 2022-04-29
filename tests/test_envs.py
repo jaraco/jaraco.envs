@@ -10,7 +10,7 @@ import path
 from jaraco import envs
 
 
-env_types = pytest.mark.parametrize("VEnvCls", [envs.VirtualEnv, envs._VEnv])
+env_types = pytest.mark.parametrize("VEnvCls", [envs.VirtualEnv, envs.VEnv])
 
 win37 = 'platform.system() == "Windows" and sys.version_info < (3, 8)'
 

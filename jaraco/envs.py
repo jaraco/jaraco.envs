@@ -44,10 +44,9 @@ class VirtualEnv:
         return {}
 
 
-class _VEnv(VirtualEnv):
+class VEnv(VirtualEnv):
     """
-    Experimental version of VirtualEnv, requires target environment
-    to be Python 3.
+    venv-based version of VirtualEnv.
     """
 
     clean_opts = ["--without-pip"]
