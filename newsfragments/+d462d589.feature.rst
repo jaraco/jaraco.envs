@@ -1,0 +1,1 @@
+Environments now have a default name, '.venv'.

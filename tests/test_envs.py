@@ -17,9 +17,7 @@ path_types = pytest.mark.parametrize("PathCls", [pathlib.Path, path.Path])
 @path_types
 def test_root_pathlib(tmp_path, VEnvCls, PathCls):
     venv = VEnvCls()
-    vars(venv).update(
-        root=PathCls(tmp_path), name=".venv", create_opts=VEnvCls.clean_opts
-    )
+    vars(venv).update(root=PathCls(tmp_path), create_opts=VEnvCls.clean_opts)
     venv.ensure_env()
 
     possible_bin_dirs = (tmp_path / ".venv/bin", tmp_path / ".venv/Scripts")

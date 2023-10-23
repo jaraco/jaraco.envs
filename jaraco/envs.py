@@ -13,16 +13,16 @@ class VirtualEnv:
     >>> root = getfixture('tmp_path')
     >>> mp.setenv('SERVICES_ROOT', str(root))
 
-    Subclass VirtualEnv and supply name and req:
+    Subclass VirtualEnv and supply req:
 
     >>> class MyVirtualEnv(VirtualEnv):
-    ...     name = '.venv'
     ...     req = 'example'
     >>> env = MyVirtualEnv().create()
     """
 
     root = Path(os.environ.get('SERVICES_ROOT', '.cache/services'))
     clean_opts = ["--no-setuptools", "--no-pip", "--no-wheel"]
+    name = '.venv'
 
     @property
     def dir(self):
