@@ -40,5 +40,5 @@ def test_root_pathlib(tmp_path, VEnvCls, PathCls):
     expected_python = which("python", path=maybe_fspath(bin_dir))
 
     cmd = [venv.exe(), "-c", "import sys; print(sys.executable)"]
-    out = subprocess.check_output(cmd, text=True).strip()
+    out = subprocess.check_output(cmd, text=True, encoding='utf-8').strip()
     assert os.path.samefile(out, expected_python)
