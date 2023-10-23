@@ -1,3 +1,12 @@
+v2.6.0
+======
+
+Features
+--------
+
+- Environments now have a default name, '.venv'.
+
+
 v2.5.1
 ======
 
