@@ -1,3 +1,12 @@
+v2.5.1
+======
+
+Bugfixes
+--------
+
+- Remove Python 3.7 compatibility from tests.
+
+
 v2.5.0
 ======
 
