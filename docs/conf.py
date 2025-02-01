@@ -54,3 +54,8 @@ extlinks = {
 extensions += ['sphinx.ext.extlinks']
 
 # local
+
+nitpick_ignore += [
+    ('py:class', 'path.Path'),
+    ('py:class', 'StrPath'),
+]
