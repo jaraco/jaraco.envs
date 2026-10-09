@@ -68,8 +68,6 @@ class VEnv(VirtualEnv):
         executable = getattr(self, 'python', sys.executable)
         cmd = [executable, '-m', 'venv', self.dir]
         with contextlib.suppress(AttributeError):
-            cmd += ['--python', self.python]
-        with contextlib.suppress(AttributeError):
             cmd += self.create_opts
         subprocess.check_call(cmd)
 
