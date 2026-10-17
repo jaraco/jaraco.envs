@@ -1,13 +1,12 @@
 import os
+import pathlib
 import subprocess
 from shutil import which
-import pathlib
 
-import pytest
 import path
+import pytest
 
 from jaraco import envs
-
 
 env_types = pytest.mark.parametrize("VEnvCls", [envs.VirtualEnv, envs.VEnv])
 path_types = pytest.mark.parametrize("PathCls", [pathlib.Path, path.Path])

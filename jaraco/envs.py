@@ -1,8 +1,9 @@
-import os
-import sys
-import subprocess
-import platform
 import contextlib
+import os
+import platform
+import subprocess
+import sys
+from typing import ClassVar
 
 from path import Path
 
@@ -21,7 +22,7 @@ class VirtualEnv:
     """
 
     root = Path(os.environ.get('SERVICES_ROOT', '.cache/services'))
-    clean_opts = ["--no-setuptools", "--no-pip", "--no-wheel"]
+    clean_opts: ClassVar = ["--no-setuptools", "--no-pip", "--no-wheel"]
     name = '.venv'
 
     @property
@@ -62,7 +63,7 @@ class VEnv(VirtualEnv):
     venv-based version of VirtualEnv.
     """
 
-    clean_opts = ["--without-pip"]
+    clean_opts: ClassVar = ["--without-pip"]
 
     def ensure_env(self):
         executable = getattr(self, 'python', sys.executable)
